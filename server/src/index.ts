@@ -6,6 +6,10 @@ import { agentWithHuman } from "./agent";
 const app = express();
 app.use(express.json());
 
+app.get("/api/health", (_req: Request, res: Response) => {
+  res.json({ status: "ok", timestamp: new Date().toISOString() });
+});
+
 app.use((_req: Request, res: Response, next: NextFunction) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -109,4 +113,10 @@ app.post("/api/chat/resume", async (req: Request, res: Response) => {
   }
 });
 
-app.listen(3001, () => console.log("Server running on http://localhost:3001"));
+const PORT = process.env.PORT ?? 3001;
+
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+}
+
+export default app;

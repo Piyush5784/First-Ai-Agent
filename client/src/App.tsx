@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { Card, CardHeader } from "./components/ui/card";
 
-const SERVER_URL = "http://localhost:3001";
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 type Message = {
   id: string;
