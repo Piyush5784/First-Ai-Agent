@@ -115,8 +115,6 @@ app.post("/api/chat/resume", async (req: Request, res: Response) => {
 
 const PORT = process.env.PORT ?? 3001;
 
-if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-}
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 
 export default app;
